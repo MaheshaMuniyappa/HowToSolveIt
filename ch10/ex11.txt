@@ -1,0 +1,12 @@
+1.  Make a text field that takes a password.  The text
+field accepts only characters.  The moment any digit is
+typed, show an error in the status bar and don't accept
+the digit typed.
+
+2.  Make  3 scroll bars in an applet representing red,
+green and blue colors.  The ranges of scroll bars are
+0 to 255.  As the scroll bars are moved, mix all three
+color values to set a mixture color and change the
+background color of the applet to mixture color.
+
+3.  Make a calculator application using frame.

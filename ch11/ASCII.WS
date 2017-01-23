@@ -1,0 +1,441 @@
+
+                       ALGORITHM COMPUTERS Packages & Interfaces
+                       -------------------   Topic - 12
+1] Packages:
+------------
+     The  name  collisions  of classes can be  avoided  by  using 
+packages.  You can define classes inside a package that  are  not 
+accessible  by  code outside that package. You  can  also  define 
+class members that are only exposed to other members of the  same 
+package.  This allows your classes to have intimate knowledge  of 
+each  other,  but not expose that knowledge to the  rest  of  the 
+world.
+
+1.1] Defining a Package:
+------------------------
+     To  create a package, simply include a 'package' command  as 
+the  first  statement in Java source file. Any  classes  declared 
+within  that  file  will belong to  the  specified  package.  The 
+'package'  statement  defines a name space in which  classes  are 
+stored. If you omit the 'package' statement, the class names  are 
+put  into  the  default package, which has  no  name.  While  the 
+default  package  is  fine  for short,  sample  programs,  it  is 
+inadequate  for  real applications. Most of the  time,  you  will 
+define a package for your code.
+     This is the general form of the 'package' statement:
+     package pkg;
+          Here, pkg is the name of the package.
+
+Java uses file system directories to store packages. For example, 
+the  .class  files  for any classes you declare  to  be  part  of 
+MyPackage  must  be  stored  in  a  directory  called  MyPackage. 
+Remember  that case is significant, and the directory  name  must 
+match the package name exactly.
+     More  than one file can include the same package  statement. 
+The  package  statement  simply specifies to  which  package  the 
+classes defined in a file belong. 
+     You  can  create a hierarchy of packages. To do  so,  simply 
+separate  each  package name from the one above it by  use  of  a 
+period.  The general form of a multileveled package statement  is 
+shown here:
+     package pkg1.pkg2.pkg3;
+A  package declared as    package java.awt.image;    needs to  be 
+stored in java\awt\image.
+
+1.2] Understanding CLASSPATH:
+-----------------------------
+     The  directory  structure specified by the package  must  be 
+available  to  the  other programs from  the  path  specified  in 
+CLASSPATH variable. 
+
+
+
+
+
+
+1.3] A Short Example:
+---------------------
+//Listing of MyPack.java
+package MyPack;
+
+class Balance {
+        String name;
+        double bal;
+
+
+  Balance(String n, double b) {
+          name = n;
+          bal = b;
+  }
+
+  void show() {
+          if(bal < 0) System.out.print("-->> ");
+          System.out.println(name + ": $" + bal);
+  }
+}
+
+class AccountBalance {
+        public static void main(String args[]) {
+                Balance current[] = new Balance[3];
+                
+                current[0] = new Balance("K. J. Fielding", 123.23);
+                current[1] = new Balance("Will Tell", 157.02);
+                current[2] = new Balance("Tom Jackson", -12.33);
+                
+                for(int i = 0; i < 3; i++) current[i].show();
+        }
+}
+
+
+1.3.a] Procedure to run:
+------------------------
+     Put the above file in MyPack directory and compile.
+Try  executing  the  AccountBalance class,  using  the  following 
+command line:
+     java MyPack.AccountBalance
+Remember, you will need to be in the directory above MyPack  when 
+you execute the above command, or have your CLASSPATH environment 
+variable set appropriately.
+
+
+
+
+
+
+
+
+
+
+
+
+1.4] Access protection:
+-----------------------
+-----------------------------------------------------------------
+               Private    No Modifier    Protected     Public
+               -------    -----------    ---------     -------
+Same Class      Yes          Yes            Yes          Yes
+
+Same package    No           Yes            Yes          Yes
+subclass
+
+Same package    No           Yes            Yes          Yes
+non-subclass
+
+Different       No           No             Yes          Yes
+package
+subclass
+
+Different       No           No             No           Yes
+package
+non-subclass
+-----------------------------------------------------------------
+
+1.5] Importing Packages:
+------------------------
+     In  Java source file, 'import' statements occur  immediately 
+following  the  package statement (if it exists) and  before  any 
+class  definitions.  This  is  the general  form  of  the  import 
+statement:
+     import pkg1.[pkg2].(classname | *);
+Ex:
+  import java.util.Date;
+  import java.io.*;
+
+     The star form may increase compilation time.
+
+Two ways of using another class:
+Ex1:
+     import java.util.*;
+     class MyDate extends Date {
+     }
+Ex2:
+     class MyDate extends java.util.Date {
+     }
+
+
+
+
+
+
+
+
+
+
+
+
+1.5.a] An Import example:
+-------------------------
+//Listing of Balance.java
+// keep the .class file in MyPack directory.
+package MyPack;
+
+public class Balance {
+        String name;
+        double bal;
+
+
+  public Balance(String n, double b) {
+          name = n;
+          bal = b;
+  }
+
+  public void show() {
+          if(bal < 0) System.out.print("-->> ");
+          System.out.println(name + ": $" + bal);
+  }
+}
+
+//Listing of TestBalance.java
+
+import MyPack.*;
+
+class TestBalance {
+        public static void main(String args[]) {
+                Balance test = new Balance("J. J. Jaspers", 99.88);
+                
+                test.show();
+        }
+}
+
+
+     As  an  experiment,  remove the public  specifier  from  the 
+Balance class and then try compiling TestBalance.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2] INTERFACES:
+--------------
+     Using  interface, you can specify what a class must do,  but 
+not  how  it  does it. Interfaces are  syntactically  similar  to 
+classes, but they lack instance variables, and their methods  are 
+declared without any body.
+     One  class  can  implement  any  number  of  interfaces.  To 
+implement  an  interfce,  a class must  create  complete  set  of 
+methods defined by the interface. However, each class is free  to 
+determine the details of its own implementation.
+     Interfaces are designed to support dynamic method resolution 
+at run time. Normally in order for a method to be called from one 
+class  to  another, both classes need to be  present  at  compile 
+time  so  the Java compiler can check to ensure that  the  method 
+signatures are compatible. This requirement by itself makes for a 
+static and non extensible classing environment. Ineviatably in  a 
+system like this, functionality gets pushed up higher and  higher 
+the  class hierarchy so that the mechanisms will be available  to 
+more  and more subclasses. Interfaces are designed to avoid  this 
+problem.  They  disconnect the definition of a method or  set  of 
+methods from the inheritance hierarchy. Since interfaces are in a 
+different hierarcy from classes, it is possible for classes  that 
+are  unrelated in terms of the class hierarchy to  implement  the 
+same  interface.  This is where the real power of  interfaces  is 
+realized.
+
+2.1] Defining an Interface:
+---------------------------
+Ex:
+interface Callback {
+  void callback(int param);
+}
+2.2] Implementing Interfaces:
+-----------------------------
+class Client implements Callback {
+  public void callback(int p) {
+    System.out.println("call back with " + p);
+  }
+}
+
+Note:  the  callback()  is  declared  using  the  public   access 
+specifier.
+When  you implement an interface method, it must be  declared  as 
+public.
+
+2.3] Accessing Implementations
+Through Interface references:
+-------------------------------
+Ex:
+class TestIFace {
+  public static void main(String args[]) {
+    Callback c = new Client();
+    c.callback(42);
+  }
+}
+2.4] Interfaces and Polymorphism Example:
+-----------------------------------------
+//Listing of 'TestIface.java'
+interface Callback {
+        void callback(int param);
+}
+
+class Client implements Callback {
+        public void callback(int p) {
+                System.out.println("call back caled with " + p);
+        }
+}
+
+class AnotherClient implements Callback {
+        public void callback(int p) {
+                System.out.println("Another version of callback");
+                System.out.println(" p squared is " + (p*p));
+        }
+}
+
+class TestIface {
+        public static void main(String args[]) {
+                Callback c = new Client();
+                AnotherClient ob = new AnotherClient();
+                
+                c.callback(42);
+                
+                c = ob;
+                c.callback(42);
+        }
+}
+
+2.5] Partial Implementations:
+-----------------------------
+If a class includes an interface but does not fully implement the 
+methods  defined  by  that interface, then  that  class  must  be 
+declared as 'abstract'.
+
+Ex:
+abstract class Incomplete implements Callback {
+  int a, b;
+  void show() {
+    System.out.println(a + " " + b);
+  }
+  // ...
+}
+
+
+
+
+
+
+
+
+
+2.6] Variables in Interfaces:
+-----------------------------
+// All the variables in interface are final and static.
+import java.util.Random;
+interface SharedConstants {
+        int NO = 0;
+        int YES = 1;
+        int MAYBE = 2;
+        int LATER = 3;
+        int SOON = 4;
+        int NEVER = 5;
+}
+class Question implements SharedConstants {
+        Random rand = new Random();
+        int ask() {
+                int prob = (int) (100*rand.nextDouble());
+                if(prob < 30) return NO;
+                else if(prob < 60) return YES;
+                else if(prob < 75) return LATER;
+                else if(prob < 98) return SOON;
+                else  return NEVER;
+        }
+}
+class AskMe implements SharedConstants {
+        static void answer(int result) {
+                switch(result) {
+                        case NO:
+                                System.out.println("No");
+                                break;
+                        case YES:
+                                System.out.println("Yes");
+                                break;
+                        case MAYBE:
+                                System.out.println("MayBe");
+                                break;
+                        case LATER:
+                                System.out.println("Later");
+                                break;  
+                        case SOON:
+                                System.out.println("Soon");
+                                break;
+                        case NEVER:
+                                System.out.println("Never");
+                                break;
+                        }
+                }
+                
+                public static void main(String args[]) {
+                        Question q = new Question();
+                        answer(q.ask());
+                        answer(q.ask());
+                        answer(q.ask());
+                        answer(q.ask());
+                }
+        }
+2.7] Interfaces Can be Extended:
+--------------------------------
+// Inter-faces can be extended
+
+        interface A {
+                void meth1();
+                void meth2();
+        }
+        interface B extends A {
+                void meth3();
+        }
+        
+        class MyClass implements B {
+                public void meth1()
+                {
+                        System.out.println("Implement meth1()");
+                }
+                public void meth2()
+                {
+                        System.out.println("Implement meth2()");
+                }
+                public void meth3()
+                {
+                        System.out.println("Implement meth3()");
+                }
+        }
+        
+        class IFExtend {
+                public static void main(String arg[])
+                {
+                        MyClass ob=new MyClass();
+                        
+                        ob.meth1();
+                        ob.meth2();
+                        ob.meth3();
+                }
+        }
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

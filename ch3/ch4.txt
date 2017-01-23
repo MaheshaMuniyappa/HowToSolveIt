@@ -1,0 +1,385 @@
+                       ALGORITHM COMPUTERS Applets & Applications
+                       ------------------- Topic - 4
+[1] Java Applets:
+-----------------
+     Java  programs  that can be viewed in a browser  are  called 
+applets.  All java applets are derived  from  java.applet.Applet. 
+The inheritance hierarchy is :
+  Component-->Container-->Panel-->Applet
+
+[1.a] A Simple Applet:
+Listing of Hello.java:
+----------------------
+import java.awt.*;
+
+public class Hello extends java.applet.Applet
+{
+        public void paint(Graphics g)
+        {
+                g.drawString("Hello World!", 20,30);
+        }
+}
+
+[1.b] Listing of 'Hello.html':
+------------------------------
+<APPLET CODE=Hello.class WIDTH=170 HEIGHT=150></APPLET>
+
+[1.c] Compiling and Running the above Applet:
+---------------------------------------------
+javac Hello.java
+appletviewer Hello.html
+
+[1.d] Options available in APPLET tag are:
+------------------------------------------
+<APPLET
+  CODE=class file (file or URL)
+  HETGHT=pixels
+  WIDTH=pixels
+[CODEBASE=URL directory]
+[ALT=alternate text message]
+[ARCHIVE=names of JAR files]
+[ALIGN=alignment]
+[NAME=name for other applets on page]
+[HSPACE=pixel]
+[VSPACE=pixel]
+>
+[<PARAM NAME=identifier VALUE=value>]
+[<PARAM NAME=identifier VALUE=value>]
+          .
+          .
+</APPLET>
+
+
+
+
+
+[1.e] Another example of Applet that uses parameters:
+-----------------------------------------------------
+Listing of 'Thermo.java':
+-------------------------
+import java.applet.*;
+import java.awt.*;
+
+public class Thermo extends Applet
+{
+        private String label;
+        private boolean isCelsius;
+        private int increment;
+        
+        public void init() {
+                label = getParameter("LABEL");
+                isCelsius = 
+          getParameter("scale").equalsIgnoreCase("CELCIUS");
+                increment = 
+          Integer.parseInt(getParameter("INCREMENT"));
+        }
+        public void paint(Graphics g)
+        {
+                g.drawString("Label is " + label,20,20);
+                g.drawString("Is Scale celcius?: " + isCelsius,20,50);
+                g.drawString("Increment is " + increment,20,80);
+        }
+}
+
+Listing of 'Thermo.html':
+-------------------------
+<APPLET CODE=Thermo.class WIDTH=200 HEIGHT=200>
+<PARAM NAME=label VALUE="My Excellent Thermostat">
+<PARAM NAME=scale VALUE=celcius>
+<PARAM NAME=increment VALUE=2>
+</APPLET>
+
+[1.f] Important Applet Methods:
+-------------------------------
+init()
+start()
+paint()    (belongs to base class Component).
+stop()
+destroy()
+
+[2] Java Applications:
+----------------------
+Applications are two types. a) Console application and b) Windows 
+application.
+To get started with applications, see the example given in 
+Topic-2. (Second class).
+
+
+
+
+
+2.a) Constructors:
+------------------
+     It  can  be tedious to initialize all variables in  a  class 
+each  time an instance is created. Even when you add  convenient 
+functions like setDim() (In last class), it would be simpler  and 
+more concise to have all of the setup done at the time the object 
+is  first created. Java allows objects to  initialize  themselves 
+when they are created. This automatic initialization is performed 
+through the use of a constructor.
+
+* A constructor initializes an object immediately upon creation.  
+* It  has  the same name as class in which  it  resides  and  is 
+  syntactically similar to a method. 
+* Once defined, the constructor is automatically called immediately 
+  after the object is created, before the new  operator completes.  
+* Constructors have no return type, not even void. This is because 
+  the implicit return type of a class. 
+
+Example: BoxTest1.java
+----------------------
+// Here, Box uses a constructor to initialize the
+// dimensions of the box.
+class Box
+{
+        double width,height,depth;
+
+        // Constructor with out parameters
+        Box()
+        {
+                System.out.println("Constructing Box");
+                width=10;
+                height=10;
+                depth=10;
+        }
+        // Compute and return volume
+        double volume()
+        {
+                return width*height*depth;
+        }
+}
+class BoxTest1
+{
+        public static void main(String args[])
+        {
+                Box mybox1=new Box();
+                Box mybox2=new Box();
+                
+                double vol;
+                vol=mybox1.volume();
+                System.out.println("Volume of mybox1 is "+vol);
+                
+                vol=mybox2.volume();
+                System.out.println("Volume of mybox2 is "+vol);
+        }
+}
+Example: BoxTest2.java
+----------------------
+// Here, Box uses a parameterized constructor to 
+//      initialize the dimensions of the box.
+
+class Box
+{
+        double width;
+        double height;
+        double depth;
+        
+        // Constructor with parameters
+        Box(double w, double h, double d)
+        {
+                width=w;
+                height=h;
+                depth=d;
+        }
+        
+        // Compute and return volume
+        double volume()
+        {
+                return width*height*depth;
+        }
+}
+
+class BoxTest2
+{
+        public static void main(String args[])
+        {
+                //declare, allocate, and initialize box objects
+                Box mybox1=new Box(10,20,15);
+                Box mybox2=new Box(3,6,9);
+                
+                double vol;
+                vol=mybox1.volume();
+                System.out.println("Volume of mybox1 is "+vol);
+                
+                vol=mybox2.volume();
+                System.out.println("Volume of mybox2 is "+vol);
+        }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+2.b] The 'this' keyword:
+------------------------
+     Sometimes  a  method will need to refer to the  object  that 
+invoked  it.  To  allow this, Java defines  the  'this'  keyword. 
+'this' can be used inside any method to refer to the 'current' 
+object.  That  is 'this' is always a reference to the  object  on 
+which the method was invoked.
+
+Example:
+--------
+// A redundant use of 'this'.
+
+Box(double w, double h, double d)
+{
+     this.width=w;
+     this.height=h;
+     this.depth=d;
+}
+
+2.c] Garbage Collection:
+------------------------
+     Since  objects are dynamically allocated by using the  'new' 
+operator,  you might be wondering how such objects are  destroyed 
+and   their  memory  released for  later  reallocation.  In   some 
+languages,  such  as C++, dynamically allocated objects  must  be 
+manually  released by use of a 'delete' opereator. Java  takes  a 
+different approach, it handles deallocation for you automatically.
+The   technique  that  accomplishes  this  is   called   'garbage 
+collection'. 
+Note:  When  no  references to an object exist,  that  object  is 
+assumed  to be no longer needed, and the memory occupied  by  the 
+object can be destroyed by garbage collector.
+
+2.d] The finalize() Method:
+---------------------------
+     Sometimes an object will need to perform some action when it 
+is destroyed. For example, if an object is holding some  non-java 
+resource such as a file handle or window character font, then you 
+might  want  to  make sure these resources are  freed  before  an 
+object  is destroyed. To handle such situations, Java provides  a 
+mechanism  called 'finalization'. By using finalization, you  can 
+define  specific actions that will occur when an object  is  just 
+about to be reclaimed by the garbage collector.
+
+2.e] Overloading Methods & Constructors:
+----------------------------------------
+     In Java it is possible to define two or more methods  within 
+the  same  class  that  share the same name,  as  long  as  their 
+parameter  declarations are different. Then the methods are  said 
+to  'overloaded',  and  the process is  referred  to  as  'method 
+overloading'.  It  is  one  of  the  ways  that  Java  implements 
+'polymorphism'.
+     In  addition  to  overload  normal  methods,  you  can  also 
+overload constructor methods.
+
+Example for overloading methods: OverloadDemo.java
+--------------------------------------------------
+//Demonstrate method overloading.
+class Overload
+{
+        void test()
+        {
+                System.out.println("No parameters");
+        }
+        
+        //Overload test for one integer parameter.
+        void test(int a)
+        {
+                System.out.println("a: "+a);
+        }
+        
+        //Overload test for two integer parameters.
+        void test(int a, int b)
+        {
+                System.out.println("a and b: "+ a + " " + b);
+        }
+        
+        //Overload test for a double parameter.
+        double test(double a)
+        {
+                System.out.println("double a:" +a);
+                return a*a;
+        }
+}
+
+class OverloadDemo
+{
+     public static void main(String args[])
+     {
+          Overload obj=new Overload();
+          double result;
+                
+          obj.test();
+          obj.test(10);
+          obj.test(10,20);
+          result=obj.test(12.5);
+          System.out.println("Result of obj.test(12.5): "+result);
+     }
+}
+
+
+
+
+
+
+
+
+
+
+
+Example for Overloading Constructors: BoxTest3.java
+---------------------------------------------------     
+// Here, Box defines three constructors to 
+// initialize the dimensions of the box various ways.
+class Box
+{
+     double width, height, depth;
+
+     // Constructor with all dimensions.
+     Box(double w, double h, double d)
+     {
+          width=w;
+          height=h;
+          depth=d;
+     }
+     // Constructor with no dimensions.
+     Box()
+     {
+          width=0;
+          height=0;
+          depth=0;
+     }
+     // Constructor used when cube is created
+     Box(double len)
+     {
+          width=height=depth=len;
+     }
+        
+     // Compute and return volume
+     double volume()
+     {
+          return width*height*depth;
+     }
+}
+
+class BoxTest3
+{
+     public static void main(String args[])
+     {
+          //declare, allocate, and initialize box objects
+          Box mybox1=new Box(10,20,15);
+          Box mybox2=new Box();
+          Box mycube=new Box(7);
+                
+          double vol;
+          vol=mybox1.volume();
+          System.out.println("Volume of mybox1 is "+vol);
+                
+          vol=mybox2.volume();
+          System.out.println("Volume of mybox2 is "+vol);
+                
+          vol=mycube.volume();
+          System.out.println("Volume of mycube is "+vol);
+     }
+}

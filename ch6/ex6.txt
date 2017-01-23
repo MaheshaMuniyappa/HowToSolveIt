@@ -1,0 +1,16 @@
+excerise  6
+
+
+1. Initialize an arry of intergers, print are the numbers
+ avoiding repetion.
+
+2. Roll a die 6000 times and print the number of occurence
+  of eachface. use math. random method to genarate a random
+  number.
+
+3. Arrange 8 queens on a chess board such that no queen cuts
+ the other queen.
+
+4. write an applets with action that has a text field in which
+ you can enter any string andf press enter key after which the
+ string shouldbe reversed

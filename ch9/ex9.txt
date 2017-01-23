@@ -1,0 +1,34 @@
+ALGORITHM COMPUTERS  (Java)
+                Exercise 9
+[1] Make an applet with a button labeled Fortune.
+When the button is clicked, Random fortune to be displayed in
+the status bar.
+
+[2] Make an applet with a text field and a button.
+Type either 'medium' or 'good' in the text field and
+press the button that displays medium or good fortune
+in the status bar.
+
+[3] Make an applet with choice box and three items in it
+called 'medium', 'good' and 'normal'.
+When the item is selected, the corresponding fortune
+should be shown in the status bar.
+
+[4] Make an applet with 2 check boxes called
+'special' and 'job' when either of them are clicked,
+show the fortune that is either a) Special or normal
+and either b) Job oriented or general.
+
+[5] Repoeat the above example with 4 radio buttons
+called a) Special and Job, b) Normal and Job,
+c) Special and General, d) Normal and General.
+
+[6] Make an applet with a List box with items
+a) Good and b) Medium.
+When the item is selected, show appropriate fortune
+in the status bar.
+
+[7] Make a paint utility.
+
+[8] Make a business calculator.
+

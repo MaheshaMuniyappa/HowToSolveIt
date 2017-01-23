@@ -1,0 +1,32 @@
+ALGORITHM COMPUTERS    Applets & Applications
+        Exercise - 3
+
+[1] Write an applet that prints the following:
+
+number  square  cube
+0       0       0
+1       1       1
+2       4       8
+3       9       27
+4       16      64
+5       25      125
+
+
+[2] Input 5 numbers in an applet from HTML file
+by using the PARAM tag and print the number of
+negative numbers, zeros and positive numbers.
+
+
+[3] Make a 'Cylinder' class with data as 'radius' and
+'height'. Write methods called 'Volume()' and 'Area()'.
+Also add a default constructor.
+
+[4] Modify the above program to add parameterized constructors.
+
+[5] To the above program add overloaded 'setData()' methods
+a) that takes 'radius' only, b) that takes 'radius' and 'height'.
+
+[6] Add overloaded constructors to the above program.
+
+
+

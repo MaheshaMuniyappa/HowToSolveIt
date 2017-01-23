@@ -1,0 +1,386 @@
+         ALGORITHM COMPUTERS     Data types, Variables & Operators
+         -------------------     Topic - 4
+
+[1] Data Types:
+    -----------
+Java defines eight simple data types.
+
+* byte          * short
+* int           * long
+* char          * float
+* double        * boolean
+
+These can be put in four groups.
+
+[1.1] Integers: This group includes byte,short, int and  long  which 
+are for whole-valued signed numbers.
+
+------------------------------------------------------------------      
+Name    Width   Range
+        (bits)
+------------------------------------------------------------------
+long    64      -9,223,372,036,854,775,808 to 9,223,372,036,854,775,807 
+
+int     32      -2,147,483,648 to 2,147,483,647
+
+short   16      -32,768 to 32,767               
+
+byte    8       -128 to 127     
+-----------------------------------------------------------------
+[1.1a] Example for Long Data type: Light.java
+      -------------------------------------- 
+// compute distance light travels using long variables.
+class Light
+{
+        public static void main(String args[])
+        {
+                int lightspeed;
+                long days;
+                long seconds;
+                long distance;
+                
+                //approximate speed of light in miles per second
+                lightspeed=86000;
+                
+                days=1000;
+                
+                seconds=days*24*60*60;
+                distance=lightspeed*seconds;
+                
+                System.out.print("In "+days);
+                System.out.print(" days light will travel about ");
+                System.out.println(distance+" miles.");
+        }
+}
+
+[1.2] Floating-point numbers: This group includes float and  double, 
+   which   represent numbers with fractional precision.
+
+double  64 bits     1.7e-308 to 1.7e+308
+
+float   32 bits     3.4e-038 to 3.4e+038
+
+[1.3] Characters: This group includes char, which represents  symbols 
+  in a   character set, like letters and numbers.
+
+[1.4] Boolean: This group includes boolean, which is a special  type  
+  for representing true/false values.
+
+
+[1.5] Literals:
+      ---------
+        A  constant value in Java is created by using  a  literal 
+representation of it. For example
+
+        100              -       Integer Literal
+        98.6             -       double Literal
+        10.5f            -       floating-point Literal
+        'X'              -       Character constant
+        "This is a test" -       String Literal
+
+[1.6] Character Escape Sequences:
+      ---------------------------
+
+Escape Sequence         Description
+---------------         -----------
+\ddd                    Octal character(ddd)
+\uxxxx                  Hexadecimal UNICODE character(xxxx)
+\'                      Single quote
+\"                      Double quote
+\\                      Backslash
+\r                      Carriage Return
+\n                      New Line or Line Feed
+\f                      Form Feed
+\t                      Tab
+\b                      Backspace                                        
+
+
+[2] VARIABLES:
+    ----------
+        The  variable  is  the basic unit of storage  in  a  java 
+program.  A  variable  is  defined  by  the  combination  of   an 
+identifier, a type, and an optional initializer.
+
+Note: In java, all variables must be declared before they can be used. 
+The basic form of a variable is
+
+        type identifier[=value][,identifier [=value]...];
+
+     The  'type'  is one of Java's atomic types, or name  of  the 
+class or interface. The 'identifier' is the name of the variable.
+
+Ex:
+        int a,b,c;
+        int d=5,e,f=5;
+        byte z=22;
+        double pi=3.14159;
+        char x='x';
+
+[3] OPERATORS:
+    ----------
+[3.1] Arithmetic operators:
+      ---------------------
+Arithmetic operators are used in mathematical expressions in  the 
+same way that are used in algebra.
+
+        Operator                        Result
+        --------                        ------
+        +                               Addition
+        -                               Subtraction
+        *                               Multiplication
+        /                               Division
+        %                               Modulus
+        ++                              Increment
+        +=                              Addition assignment
+        -=                              Subtraction assignment
+        *=                              Multiplication assignment
+        /=                              Division assignment
+        %=                              Modulus assignment
+        --                              Decrement
+
+The  operands  of the arithmetic operators must be of  a  numeric 
+type. You cannot use them on boolean types, but you can use  them 
+on  char  types, since the char type in Java is,  essentially,  a 
+subset of int.
+
+[3.2] Bitwise Operators:
+      -----------------
+Java  defines several bitwise operators which can be  applied  to 
+the  integer  typpes,  long, int, short, char,  and  byte.  These 
+operators act upon the individual bits of their operands.
+
+        Operator                Result
+        --------                ------
+        ~                       Bitwise unary NOT
+        &                       Bitwise AND
+        |                       Bitwise OR
+        ^                       Bitwise exclusive OR
+        >>                      Shift right
+        >>>                     Shift right zero fill
+        <<                      Shift left
+        &=                      Bitwise AND assignment
+        |=                      Bitwise OR assignment
+        ^=                      Bitwise exclusive OR assignment
+        >>=                     Shift right assignment
+        >>>=                    Shift right zero fill assignment
+        <<=                     Shift left assignment
+
+        The  bitwise  logical operators are &, |, ^, and  ~.  The 
+following table shows the outcome of each operation.
+
+A       B       A | B           A & B           A ^ B           ~A
+-------------------------------------------------------------------
+0       0       0               0               0               1
+1       0       1               0               1               0
+0       1       1               0               1               1
+1       1       1               1               0               0
+
+
+[3.3] Relational Operators:
+      ---------------------
+The  ralational  operators determine the relationship   that  one 
+operand has to the other. Specifically, they define equality  and 
+ordering. 
+
+        Operator                        Result
+        --------                        ------
+        ==                              Equal to
+        !=                              Not equal to
+        >                               Greater than
+        <                               Less than
+        >=                              Greater than or equal to
+        <=                              Less than or equal to
+
+[3.4] Boolean Logical Operators:
+      --------------------------                                                
+The Boolean logical operators shown here operate only on  boolean 
+operands.  All the binary logical operators combine  two  boolean 
+values to form a resultant boolean value.
+        
+        Operator                        Result
+        -------                         ------
+        &                               Logical AND
+        |                               Logical OR
+        ^                               Logical XOR
+        ||                              Short-circuit OR
+        &&                              Short-circuit AND
+        !                               Logical unary NOT
+        &=                              AND assignment
+        |=                              OR assignment
+        ^=                              XOR assignment
+        ==                              Equal to
+        !=                              Not equal to
+        ?:                              Ternary if-then-else
+
+The logical operators, &, |, and ^, operate on boolean values  in 
+the  same way that they operate on the bits  on an  integer.  The 
+logical ! inverts the Boolean    state: !true == false and !false 
+==  true.  The following table shows the effect of  each  logical 
+operation:
+
+
+A       B       A | B           A & B           A ^ B           !A
+-------------------------------------------------------------------
+F       F       F               F               F               T
+T       F       T               F               T               F
+F       T       T               F               T               T
+T       T       T               T               F               F
+
+[3.4a] Example for Boolean Logic: BoolLogic.java
+       -----------------------------------------
+
+// Demonstrate the boolean logical operators.
+
+class BoolLogic
+{
+        public static void main(String args[])
+        {
+                boolean a=true;
+                boolean b=false;
+                boolean c=a|b;
+                boolean d=a&b;
+                boolean e=a^b;
+                boolean f=(!a&b)|(a&!b);
+                boolean g=!a;
+                
+                System.out.println("a= "+a);
+                System.out.println("b= "+b);    
+                System.out.println("a|b= "+c);
+                System.out.println("a&b= "+d);
+                System.out.println("a^b= "+e);
+                System.out.println("!a&b|a&!b= "+f);
+                System.out.println("!a= "+g);
+        }
+}
+
+[4] Primitives and Conversion:
+------------------------------
+[4.a] Assignment:
+-----------------
+Assignment  conversion  happens  when you assign  a  value  to  a 
+variable  of  a  different  type from  the  original  value.  For 
+example:
+1. int i;
+2. double d;
+3. i = 10;
+4. d = i;
+
+In the above code, i gets converted to the double precision value 
+10.0000000000 (remaining zeroes are omitted for brevity).
+     The code above is perfectly legal. Some assignments, on  the 
+other hand, are illegal. For example, the following code will not 
+compile.
+1. double d;
+2. short s;
+3. d = 1.2345;
+4. s = d;   // assign a double value to a short variable.
+The  general  rules for primitive assignment  conversion  can  be 
+stated as folows:
+i) A boolean may not be converted to any type.
+ii)  A non-boolean may be converted to another non-boolean  type, 
+provovided the conversion is a widening conversion.
+iii)  A non-boolean may not be converted to  another  non-boolean 
+type, if the conversion would be narrowing conversion.
+
+Widening conversions:
+        char \
+               \
+                 ---> int ---> long ---> float ---> double
+                /
+byte --> short / 
+
+[4.b] Method Call:
+------------------
+     A  method-call conversion happens when you pass a  value  of 
+one type as an argument to a method that expects a diferent type. 
+For example, the cos() method of the Math class expects a  single 
+argument of type double. Consider the following code:
+1. float frads;
+2. double d;
+3. frads = 2.34567f;
+4.  d  = Math.cos(frads);  // pass float to method  that  expects 
+                           // double
+     The  float  value in frads is automatically converted  to  a 
+double value before it handed to the cos() method.
+     The  code  below  generates a compiler  error  because,  the 
+method elementAt() is expecting an integer argument.
+1. double d = 12.0;
+2. Object ob = myVector.elementAt(d);  // myVector is a Vector.
+
+[4.c] Arithmetic Promotion:
+---------------------------
+Arithmetic   promotion  conversions  happen   within   arithmetic 
+statements,  while  the compiler is trying to make sense  out  of 
+many different possible kinds of operand.
+     Consider the following fragment:
+1. short s = 9;
+2. int i = 10;
+3. float f = 11.1f;
+4. double d = 12.2;
+5. if(++s * i >= f/d)
+6.    System.out.println(">>>");
+7. else
+8.    System.out.println("<<<");
+
+     The  rules  that  govern  arithmetic  promotion  distinguish 
+between  unary(+,-,++,--,~)  and  binary  (+,-,*,/,%,^,>>,>>>,<<) 
+operators.
+
+
+
+
+     For unary operators, two rules apply, depending on the  type 
+of the single operand.
+  i)  If  the  operand  is a byte, a short,  or  a  char,  it  is 
+converted to an int.
+  ii)  Else  if  the  operand is of any other  type,  it  is  not 
+converted.
+
+     For binary operators, there are four rules, depending on the 
+types of the two operand.
+     i)  If one of the operands is double, the other  operand  is 
+converted to a double.
+     ii) Else if one of the operands is float, the other  operand 
+is converted to a float.
+     iii)  Else  if  one of the operands is  a  long,  the  other 
+operand is converted to a long.
+     iv) Else both operands are converted to ints.
+
+     With  these rules in mind, it is possible to determine  what 
+really happens in the code example given:
+1. The short s is promoted to an int and then incremented.
+2.  The  result of step 1 (an int) is multiplied by  the  int  i. 
+Since  both  operands  are of same type, and  that  type  is  not 
+narrower  than an int, no conversion is necessary. The result  of 
+the multiplication is an int.
+3. Before dividing float f by double d, f is widened to a double. 
+The conversion generates a double-precision result.
+4. The result of step 2 ( as int) is to be compared to the result 
+of  step 3 ( a double). The in is converted to a double, and  the 
+two  are compared. The result od a comparison is always  of  type 
+boolean.
+
+[5] Primitives and Casting:
+---------------------------
+     Java is perfectly willing to perform widening conversions on 
+primitives.  Casting  means  explicitly telling Java  to  make  a 
+conversion.  A  casting  conversion  may  widen  or  narrow   its 
+argument.  To cast, just precede a value with  the  parenthesized 
+name of the desired type.
+     For example:
+1. short s = 259;
+2. byte b = (byte) s;
+3. System.out.println("b = " + b);
+     
+     The above code prints out the value 3.
+The rules of casting:
+     i)  You  can  cast any non-boolean type to  any  other  non-
+boolean type.
+     ii) You cannot cast a boolean to any other type; you  cannot 
+cast any other type to a boolean.
+
+Ex: Will the following code compile?
+1. byte b = 2;
+2. short b1 = 3;
+3. b = b * b1;
+

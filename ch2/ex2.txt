@@ -1,0 +1,25 @@
+ALGORITHM COMPUTERS
+Exercise - 2
+
+[1] Make a class called 'Circle' with data called 'radius'.
+Add a method to the class called 'Area()'.
+Make the above program in 3 different ways according to
+the three examples given.
+
+[2] Make a class called 'Palindrome' with data called
+'num' which is of type int. Add a method called 'Reverse()'
+that reverses the given number.
+Make the above program in 3 different ways according to
+the three examples given.
+
+[3] By using the programming techniques learned in this chapter,
+write a program to print the following output.
+
+number      square     cube
+0           0          0
+1           1          1
+2           4          8
+3           9          27
+4           16         64
+5           25         125
+

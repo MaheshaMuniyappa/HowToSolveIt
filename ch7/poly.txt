@@ -1,0 +1,4 @@
+	Polymorphism is the third essential feature of an object-oriented programming language, after data abstraction and inheritance. 
+	It provides another dimension of separation of interface from implementation, to decouple what from how. Polymorphism allows improved code organization and readability as well as the creation of extensible programs that can be "grown" not only during the original creation of the project but also when new features are desired.
+	Encapsulation creates new data types by combining characteristics 
+and behaviors. Implementation hiding separates the interface from the implementation by making the details private. This sort of mechanical organization makes ready sense to someone with a procedural programming background. But polymorphism deals with decoupling in terms of types. 
